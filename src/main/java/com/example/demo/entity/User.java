@@ -1,7 +1,7 @@
-package com.example.demo.Entity;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class User {
@@ -10,11 +10,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Name cannot be null")
+    @NotBlank(message = "Name is required")
     private String name;
+    
+    @NotNull(message = "Email cannot be null")
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     private String email;
-	public Long getId() {
-		return id;
-	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -33,6 +37,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
+	}
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
     
     
